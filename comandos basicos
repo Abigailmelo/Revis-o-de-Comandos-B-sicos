@@ -1,0 +1,68 @@
+comandos basicos mysql e sql
+
+1. MySQL
+
+- Recriar o conteiner do Docker: 
+d run --name galatians -d -e MYSQL_ROOT_PASSWORD=lovethepoor -p 3306:3306 mysql:8.0.22
+- d logs galatians
+- Executar: d exec -it nomedaimagem mysql -uroot -p
+- Password: lovethepoor
+
+- Conectar ao localhost: telnet localhost 3306
+- Para de rodar uma imagem: d stop galatians
+- Para remover uma imagem: d rm nomedaimagem
+- Iniciar uma imagem: d start nomedaimagem
+
+- Para mostar o banco de dados: show databases;
+- use mysql;
+show tables: mostra as tabelas do banco de dados do MySQL
+- use information_schema; 
+quit: sai do container
+- Conectar com seu IP: d run --rm -it mysql:8.0.22 mysql -h192.168.xxx.xxx -uroot -p 
+
+2. SQL
+
+- d exec -it galatians mysql -uroot -p
+- Criar um database: 
+create database mydata;
+- show databases;
+- use mydata;
+- show tables
+- Criar uma TABLE: create table Book (bookld bigint primary key, authorld bigint, description varchar(75), name varchar(75);
+- Para descrver sua mesa: desc Book;
+- show tables
+- "Largar" uma mesa: drop table Book;
+- Inserir dentro da table: create table Author (authorld bigint primary key, birthday datetime(6), description varchar(75), name varchar(75), original12 tinyint);
+ desc Author
+ insert into Author values (1, "0001-1-31", "textoaleatorio.", "Nome", 0);
+ select * from Author;
+ Inserir novamente: insert into Author values (2, "0015-1-31", "textoaleatorio.", "Nome", 1);
+ 
+ - Mostrar quantos textos foram do mesmo autor/name: select * from Author where authorId = 4;
+ - Mostrar todos que tem a mesmo Nome: select * from Author where name = "aleatorio";
+-  Mostrar onde tem mesma palavra: select * from Author where description like "%aleatorio%";
+- Mostrar todos os nomes que possuem determinada letra: select * from Author where name like "%aleatorio%";
+- Ordem alfabetica: select * from Author order by name;
+- Ao contrario: select * from Author order by name desc;
+- select * from Author order by name asc;
+- Mostrar so o nome: select nam from Author;
+- Mostrar name e authorld: select authorld, name from Author; 
+Mostrar a soma: select count(*) from Author;
+
+- Excluir uma mesa: delete from Author where name = "Aleatorio";
+Atualizacao de uma mesa: update Author set birthday = "0014-1-31", description = "Aleatorio.", name = "Nome", original12 = 0 where authorld =4;
+
+Instrução SQL que retorna nome de todos autores e o número de livros que escreveram:
+-  select Author.name, count(Book.authorId) from Author inner join Book on Author.authorId = Book.authorId group by Author.authorId;
+
+Instrução SQL que retorne o nome de todos os autores que escreveram mais de um livro: 
+-  select Author.name from Author inner join Book on Author.authorId = Book.authorId group by Author.authorId having count(Book.authorId) > 1;
+
+Para instalar o cliente MySQL em sua maquina local: 
+- sudo dnf install mysql
+- mysql -h127.0.0.1 -uroot -p 
+Para listar todos os contêineres do Docker em execução: 
+- d ps 
+---> Alternativa do MySQL ----> PostgreSQL.
+
+End!

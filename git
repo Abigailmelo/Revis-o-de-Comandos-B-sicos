@@ -1,0 +1,85 @@
+----> FEDORA <------
+Mostra onde estamos = pwd
+Volta ao diretorio anterior = cd ..
+Sair do diretorio e ir para home = cd
+Nova guia no terminal = ctrl + t
+Mude a guia de foco = ctrl + super + left
+Feche a guia = ctrl + w
+Para fechar todas as guias = ctrl + Q
+Para trabalhar em muitos ramos Liferay = Ctrl + shift + l
+Para deixar a tela inteira = Super + M
+Lista os arquivos e diretorios dentro da pasta atual = ls
+listagem mais detalhada dos arquivos = ls -l
+Lista tudo que se encontra no diretorio = ls -la
+Para limpar o terminal = clear ou ctrl + l
+Ir para a raiz dos arquivos/home = cd
+Criar Diretorios = mkdir
+Criar arquivos = touch NomeDoArquivo.txt
+Criar arquivo com conteudo = echo "nome do arquivo" > exemplo.txt
+Remover arquivos = rm + nome do arquivo
+Remover Diretorios vazios = rmdir
+remove diretorios com todos arquivos que estao dentro = rm -r
+Baixando arquivos = curl UrlDoARquivo --output NomeQueEuQueroDarAOArquivo
+Dowload do Url = wget + url
+Sincronizar um diretorio = rsync -av ~/OrigemDoARquivo ~/DestinoDoArquivo
+Sincronizar os arquivos para o diretorio = rsync -av ~/OrigemDoArquivo/ ~/Destino
+Iostat = mostra o relatorio de uso da CPU e da entrada/saida dos dispositivos de armazenamento
+SUDO = Permissao de super usuario
+*Entrar na maquina de outra pessoa para pegar arquivo = rsync -av me@IpDaMAquinaQueEuQueroEntrar:/home/me/Docker /home/me
+
+
+----> EDITORES <-----
+ **Sublime
+ ctrl + p = para navegar atraves dos arquivos abertos
+ ctrl + # = para editar mais de uma linha ao mesmo tempo
+ Add Folder = para adicionar pasta ao projeto
+ shift +f11 = para abrir totalmente a tela
+ crtl + shift + d = atalho duplicacao de linha
+ Estando no terminal para editar no sublime = osub
+
+---> REVISÃO GIT <------
+
+Git branch = lista todas as branchs
+git branch + nome da branch = cria uma nova branch
+git branch -D + nome da branch = exclue uma branch
+Git Branch -v = listar branchs com os ultimos commits
+Git checkout -B +nome da branch = cria uma branch e ja entra nela
+para excluir branch = sai da branch -> git checkout master -> git branch -d + nome da brach
+ git pull upstream master [upstream=liferay portal]
+git remote = gerencia repositorios que vc baixou na sua maquina
+cherry pick = "rouba"/copia o codigo de outra pessoa
+git log = lista commits
+Git log --oneline = lista commits de forma resumida
+Git log --oneline --graph --all = lista com detalhes e ramificacoes
+Git log -p = lista os dois ultimos commits com detalhes dos arquivos
+Git log --stat = listar commits mostrando as alteracoes
+Git init = tornar um diretorio em um repositorio git / area de stage
+Git Add = Adicionar arquivos ao rastreamento do git / indice
+Git restore : --staged nome do arquivo -> voltar ao estagio inicial / tirar o arquivo do repositorio git
+Git rm = -f nome do arquivo -> excluir o arquivo no estagio de rastreio
+Git add = adicionar todos os arquivos
+Git Commit = registra minhas alteracoes no repositorio
+Git commit -M "mensagem" = adicionar todos arquivos dentro de um unico commit
+Git Commit -AM "mensagem" adicionar todos os arquivos dentro de um unico commit
+Git Commit --amend = mudar mensagem do ultimo commit
+Git Commit --amend -m = nova mensagem
+Git Commit --patch = ver/editar arquivos antes do commit
+Git Status = mostra o estado da arvore de trabalho
+             exibe arquivos alterados
+             exibe arquivos criados
+Git cherry pick = copiar commits especificos ao branch desejado
+Git Cherry = lista os commits que foram copiados
+Git diff hash = comparar alteracoes do commit
+Git reset = Desfazer alteracoes voltando um estado especifico do commit
+  tem tres formas:
+   --soft = desfazer alteracoes e voltar o arquivo para a area de indice da arvore de trabalho, sem apagar o commit
+   --mixed = desfazer alteracoes e voltar o arquivo para o diretorio de trabalho
+   -- hard = desfazer alteracoes e o arquivo voltar para o inicio de arvore de trabalho e o commit eh apagado
+Git Merge = juntar os commits de uma branch na minha branch ativa
+ ~diferenca git Merge e git Rebase
+Git merge vai criar um commit extra para o juntar tudo em uma branch. O merge faz bagunca
+Git Rebase vai somente mover o commit para o topo da lista da branch e deixar tudo alinhado. O rebase nao faz bagunca
+  ~
+Git Pull = puxar o repoditorio remoto para o repositorio local
+Git Push = Empurrar do repositorio local para o repositorio remoto
+Git Pull Request = solicitacao de aprovacao do codigo par ao administrador

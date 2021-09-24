@@ -1,0 +1,125 @@
+comandos apache/liferay/git
+
+APACHE
+
+Conectar ao localhost: 
+- d run --rm -it -p 80:80 httpd:2.4
+- telnet localhost 80
+
+ATUALIZAR O SITE
+Pegar o ID do container do seu servidor Apache: 
+- d ps
+Ir para o container: d exec -it IDdoCONTAINER bash
+- ls 
+- cd htdocs vai para o caminho /usr/local/apache2/htdocs
+- more index.html esse comando precisa aparecer isso --> 
+<html><body><h1>It works!</h1></body></html>
+- echo "Aleatorio" > index.html
+- more index.html
+Para sair: exit
+
+Atualize o site sem ir para dentro do container do Docker
+- Crie um diretorio: /home/me/myhttp
+- Va ate ele: cd home/me/myhttp
+- Digite ---> echo "This is really good!" > index.html
+- d run --rm -it -p 80:80 -v /home/me/myhttp:/usr/local/apache2/htdocs httpd:2.4
+- Atualize o Chrome em --> http: // localhost
+
+---> Alternativa do Apache = Nginx.
+
+LIFERAY 
+
+Executando o Liferay do Docker
+- d run -it -p 8080: 8080 liferay / portal: 7.3.6-ga7
+- Va para http: // localhost: 8080
+Parar o Liferay: <Control + C>
+
+Construindo o Liferay da Fonte
+- Bifurque o repositorio publico Liferay em:
+ https://github.com/liferay/liferay-portal
+- /home/me/dev/projects/liferay-portal
+Vizualizar o log Git exitente: g log
+
+Baixar os commits mais recentes no branch master: 
+- g pull upstream  master
+
+Ver os commits em sua origem: 
+- g log origin / master
+
+Enviar os commits em seu clone local para o https://github.com/ 
+- g push origin master
+
+Limpeza geral: 
+- ant clean: limpar os modulos do portal (mais rapido)
+- ant all: reconstroi novamente os modulos (mais demorado)
+
+Va para cd ~/dev/bundles/master/osgi/modules  
+Observe que os arquivos foram copiados aqui.
+
+Va para cd ~/dev/bundles/master/tomcat-9.0.37/bin 
+Digite ./catalina.sh run
+Esse comando abre automaticamente em http://localhost:8080
+ 
+-----------> GIT 
+
+- git --version  /  g --version
+- cd /home/me/dev/projects/liferay-learn
+Ver o status: git status  /  g st
+
+Transformar um diretório em um repositório Git
+- g init 
+- g st
+Ver os commits existentes no repositório: 
+- g log 
+Criar um texto nele: echo "aleatorio"> def.txt ou abc.txt
+Adicionar o texto:
+- g add def.txt  ----> g st ----> g log 
+- g ci -m "This is my first commit". -a ----> g log
+
+Detalhes sobre o commit:
+- g show digitarohashdocommit
+Mostrar todas as Branches
+- g br
+
+CRIAR Branches 
+- g br 1st-branch
+Ir de seu Branch master para seu primeiro Branch
+- g co 1st-branch
+Criar dentro da sua 1st-branch
+- echo "abc"> ghi.txt
+- g add ghi.txt
+- g ci -m "This is a commit to add file ghi.txt." -a  
+- g log
+Veja que na master nao tem o commit criado dentro da branch.
+
+Mostrar o commit do branch quando estiver no branch master:
+- g log 1st-branch
+Cherry pick = copiar/selecionar
+Cherry pick o commit do primeiro branch para o master:
+- g cp hashdocommit
+
+g merge master
+
+Reacolocar 2 commits:
+- g rb -i HEAD ~ 2
+Retornar os commits realizados:
+g reset --hard hashdocommit
+Alterar a mensagem de confirmação
+- g ci --amend
+E para finalizar: ---> g rb --continue
+
+Clonar um repositório Clay: 
+- g clone git@github.com : aleatorio / clay.git
+
+IMPORTANTE
+Enviar suas alterações para Abelenda/Brian:
+- gpr submit -u <YOUR_NEIGHBORS_GITHUB_USER_NAME> *
+Ver lista de pull requests que você tem no fork do repositório Clay
+
+Ver o número total de solicitações em aberto que você tem em 
+todos os seus garfos (FORKS): 
+- gi
+Digite gpr 1 para fazer check-out do branch que 
+contém o conteúdo da solicitação pull 1 (supondo que o ID seja 1)
+
+End!
